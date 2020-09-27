@@ -57,6 +57,9 @@ void insertMap(HashMap * map, char * key, void * value) {
     if(is_equal(map->buckets[a]->key,key) ){
       break;
     }
+    if(a == map -> capacity-1){
+      a = 0;
+    }
   }
 
 }
