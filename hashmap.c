@@ -86,7 +86,20 @@ HashMap * createMap(long capacity) {
 
 void eraseMap(HashMap * map,  char * key) {    
 
-
+for(long a = hash(key,map->capacity); a < map->capacity; a++){
+      
+    if(map->buckets[a] == NULL || map->buckets[a]->key == NULL){
+        break;
+    }
+    if(is_equal(map->buckets[a]->key,key) ){
+      map->buckets[a]->key = NULL; 
+      map->size--;
+      break;
+    }
+    if(a == map -> capacity-1){
+      a = 0;
+    }
+  }
 }
 
 void * searchMap(HashMap * map,  char * key) {  
