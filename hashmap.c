@@ -89,10 +89,21 @@ void eraseMap(HashMap * map,  char * key) {
 
 }
 
-void * searchMap(HashMap * map,  char * key) {   
-
-
-    return NULL;
+void * searchMap(HashMap * map,  char * key) {  
+   
+   for(long a = hash(key,map->capacity); a < map->capacity; a++){
+      
+    if(map->buckets[a] == NULL || map->buckets[a]->key == NULL){
+       break;
+    }
+    if(is_equal(map->buckets[a]->key,key) ){
+      return map->buckets[a]->value;
+    }
+    if(a == map -> capacity-1){
+      a = 0;
+    }
+  }
+  return NULL;
 }
 
 void * firstMap(HashMap * map) {
