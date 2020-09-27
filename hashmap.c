@@ -121,11 +121,21 @@ void * searchMap(HashMap * map,  char * key) {
 }
 
 void * firstMap(HashMap * map) {
-
+  for(long i = 0; i < map->capacity; i++){
+    if(map->buckets[i] != NULL || map->buckets[i]->key != NULL){
+      map->current =i;
+      return map->buckets[i]->value;
+    }
+  }
     return NULL;
 }
 
 void * nextMap(HashMap * map) {
-
+  for(long i = map->current + 1; i < map->capacity; i++){
+    if(map->buckets[i] != NULL || map->buckets[i]->key != NULL){
+      map->current = i;
+      return map->buckets[i]->value;
+    }
+  }
     return NULL;
 }
